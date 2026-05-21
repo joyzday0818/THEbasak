@@ -2,18 +2,19 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>누룽지 THE바삭</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Black+Han+Sans&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{background:#0a0603;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Noto Sans KR',sans-serif;}
 .phone{width:390px;height:844px;background:#0F0A04;border-radius:48px;overflow:hidden;position:relative;box-shadow:0 48px 120px rgba(0,0,0,0.9),0 0 0 1.5px #2a1a08;display:flex;flex-direction:column;}
+@media(max-width:420px){.phone{width:100vw;height:100dvh;border-radius:0;box-shadow:none;}}
 
 /* HEADER */
 .hdr{background:#1A0E03;padding:48px 20px 14px;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,0.05);}
 .hdr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px;}
-.hdr-logo{font-family:'Black Han Sans',sans-serif;font-size:26px;color:#FAF6F0;letter-spacing:-1px;}
+.hdr-logo{font-family:'Black Han Sans',sans-serif;font-size:22px;color:#FAF6F0;letter-spacing:-1px;}
 .hdr-logo em{color:#E8921A;font-style:normal;}
 .hdr-time{font-size:12px;color:rgba(250,246,240,0.35);letter-spacing:1px;}
 .hdr-date{font-size:12px;color:rgba(250,246,240,0.4);}
@@ -22,15 +23,15 @@ body{background:#0a0603;min-height:100vh;display:flex;align-items:center;justify
 .content{flex:1;overflow-y:auto;padding:16px 18px 80px;}
 .content::-webkit-scrollbar{display:none;}
 
-/* BOTTOM NAV */
+/* NAV */
 .nav{position:absolute;bottom:0;left:0;right:0;background:#1A0E03;border-top:1px solid rgba(255,255,255,0.06);display:flex;padding:10px 0 22px;}
 .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;border:none;background:none;cursor:pointer;padding:6px 0;}
 .nav-icon{font-size:20px;transition:transform 0.15s;}
-.nav-label{font-size:10px;font-weight:700;letter-spacing:0.5px;color:rgba(250,246,240,0.3);transition:color 0.15s;}
+.nav-label{font-size:10px;font-weight:700;color:rgba(250,246,240,0.3);}
 .nav-btn.active .nav-icon{transform:scale(1.15);}
 .nav-btn.active .nav-label{color:#E8921A;}
 
-/* SECTION HEADER */
+/* SEC HEADER */
 .sec-hd{font-size:11px;font-weight:700;color:rgba(250,246,240,0.3);letter-spacing:2px;margin-bottom:10px;margin-top:18px;}
 .sec-hd:first-child{margin-top:0;}
 
@@ -39,8 +40,8 @@ body{background:#0a0603;min-height:100vh;display:flex;align-items:center;justify
 .stat-card{background:#1C1208;border-radius:18px;padding:16px;border:1px solid rgba(255,255,255,0.04);}
 .stat-card.accent{background:linear-gradient(135deg,rgba(232,146,26,0.13),rgba(201,120,22,0.06));border-color:rgba(232,146,26,0.2);}
 .stat-label{font-size:11px;color:rgba(250,246,240,0.35);letter-spacing:1px;margin-bottom:8px;}
-.stat-val{font-family:'Black Han Sans',sans-serif;font-size:32px;color:#FAF6F0;line-height:1;}
-.stat-val span{font-size:16px;color:rgba(250,246,240,0.3);}
+.stat-val{font-family:'Black Han Sans',sans-serif;font-size:30px;color:#FAF6F0;line-height:1;}
+.stat-val span{font-size:14px;color:rgba(250,246,240,0.3);}
 .stat-sub{font-size:11px;color:rgba(250,246,240,0.3);margin-top:4px;}
 
 /* ROLE DASH CARD */
@@ -56,13 +57,14 @@ body{background:#0a0603;min-height:100vh;display:flex;align-items:center;justify
 .empty-chip{font-size:11px;color:rgba(250,246,240,0.2);font-style:italic;}
 .role-slot-count{font-size:13px;font-weight:700;color:rgba(250,246,240,0.2);}
 
-/* INLINE ORDER CARD (dashboard) */
+/* ORDER CARD */
 .order-card{background:#1C1208;border-radius:16px;padding:14px 16px;border:1px solid rgba(255,255,255,0.04);margin-bottom:8px;display:flex;align-items:center;gap:12px;}
 .order-num{font-family:'Black Han Sans',sans-serif;font-size:18px;color:rgba(250,246,240,0.15);width:24px;flex-shrink:0;}
 .order-info{flex:1;}
 .order-items{font-size:13px;font-weight:700;color:#FAF6F0;margin-bottom:3px;}
 .order-time{font-size:11px;color:rgba(250,246,240,0.3);}
-.status-badge{padding:5px 12px;border-radius:10px;font-size:11px;font-weight:700;border:none;cursor:pointer;white-space:nowrap;}
+.status-badge{padding:5px 10px;border-radius:10px;font-size:11px;font-weight:700;border:none;cursor:pointer;white-space:nowrap;font-family:'Noto Sans KR',sans-serif;}
+.avg-card{background:linear-gradient(135deg,rgba(234,179,8,0.1),rgba(234,179,8,0.04));border:1px solid rgba(234,179,8,0.2);border-radius:16px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
 
 /* ASSIGN TAB */
 .role-assign-card{background:#1C1208;border-radius:20px;padding:16px;border:1px solid rgba(255,255,255,0.04);margin-bottom:10px;}
@@ -73,22 +75,22 @@ body{background:#0a0603;min-height:100vh;display:flex;align-items:center;justify
 .slot-bar{display:flex;gap:5px;margin-bottom:12px;}
 .slot-dot{height:4px;border-radius:2px;flex:1;background:rgba(255,255,255,0.08);transition:background 0.3s;}
 .staff-grid-sel{display:flex;flex-wrap:wrap;gap:6px;}
-.staff-sel-btn{display:flex;align-items:center;gap:6px;padding:6px 10px 6px 6px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);cursor:pointer;transition:all 0.15s;font-family:'Noto Sans KR',sans-serif;}
+.staff-sel-btn{display:flex;align-items:center;gap:6px;padding:6px 10px 6px 6px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.15s;}
 .staff-sel-btn:disabled{opacity:0.25;cursor:not-allowed;}
-.staff-sel-btn.on{border-width:1.5px;}
 .staff-sel-photo{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;overflow:hidden;background:linear-gradient(135deg,#3D1C00,#8B5A2B);}
 .staff-sel-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 .staff-sel-name{font-size:12px;font-weight:700;color:#FAF6F0;}
-
-/* UPLOAD */
 .upload-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
 .upload-btn-sm{display:flex;align-items:center;gap:5px;padding:5px 9px 5px 6px;border-radius:20px;border:1px dashed rgba(255,255,255,0.12);background:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
 .upload-btn-sm:hover{border-color:rgba(232,146,26,0.5);}
 .upload-label{font-size:11px;color:rgba(250,246,240,0.4);}
+input[type=file]{display:none;}
+.confirm-assign-btn{width:100%;background:linear-gradient(135deg,#E8921A,#C97816);border:none;border-radius:16px;padding:16px;font-family:'Black Han Sans',sans-serif;font-size:18px;color:white;cursor:pointer;letter-spacing:2px;margin-top:4px;box-shadow:0 8px 24px rgba(232,146,26,0.3);}
+.confirm-assign-btn:disabled{background:#2a1a08;color:rgba(250,246,240,0.3);cursor:not-allowed;box-shadow:none;}
 
 /* ORDERS TAB */
-.add-order-btn{width:100%;background:rgba(232,146,26,0.08);border:1.5px dashed rgba(232,146,26,0.3);border-radius:16px;padding:16px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;font-size:14px;font-weight:700;color:rgba(250,246,240,0.45);transition:all 0.15s;margin-bottom:10px;font-family:'Noto Sans KR',sans-serif;}
-.add-order-btn:hover{background:rgba(232,146,26,0.15);color:#FAF6F0;border-color:rgba(232,146,26,0.5);}
+.add-order-btn{width:100%;background:rgba(232,146,26,0.08);border:1.5px dashed rgba(232,146,26,0.3);border-radius:16px;padding:16px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;font-size:14px;font-weight:700;color:rgba(250,246,240,0.45);margin-bottom:10px;font-family:'Noto Sans KR',sans-serif;transition:all 0.15s;}
+.add-order-btn:hover{background:rgba(232,146,26,0.15);color:#FAF6F0;}
 .empty-state{text-align:center;padding:48px 0;color:rgba(250,246,240,0.2);font-size:14px;}
 .empty-icon{font-size:36px;margin-bottom:8px;}
 
@@ -106,16 +108,13 @@ body{background:#0a0603;min-height:100vh;display:flex;align-items:center;justify
 .prog-pct{font-size:11px;color:rgba(250,246,240,0.25);text-align:right;margin-top:5px;}
 .total-prod-card{background:linear-gradient(135deg,rgba(232,146,26,0.1),rgba(201,120,22,0.05));border:1px solid rgba(232,146,26,0.15);border-radius:16px;padding:16px;display:flex;justify-content:space-between;align-items:center;}
 .total-val{font-family:'Black Han Sans',sans-serif;font-size:24px;color:#E8921A;}
-
-/* QTY BUTTONS */
-.qbtn{width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:transform 0.1s;font-family:'Noto Sans KR',sans-serif;}
-.qbtn:active{transform:scale(0.88);}
+.qbtn{width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Noto Sans KR',sans-serif;}
 .qbtn.m{background:rgba(255,255,255,0.1);color:#FAF6F0;}
 .qbtn.p{background:#E8921A;color:white;}
 
-/* MODAL */
-.modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:flex-end;z-index:100;}
-.modal-overlay.hidden{display:none;}
+/* ORDER MODAL */
+.modal-bg{position:absolute;inset:0;background:rgba(0,0,0,0.75);display:flex;align-items:flex-end;z-index:100;}
+.modal-bg.hidden{display:none;}
 .modal{background:#1C1208;border-radius:28px 28px 0 0;width:100%;padding:24px 22px 36px;border-top:1px solid rgba(255,255,255,0.08);}
 .modal-title{font-size:18px;font-weight:900;color:#FAF6F0;margin-bottom:20px;}
 .modal-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
@@ -123,7 +122,44 @@ body{background:#0a0603;min-height:100vh;display:flex;align-items:center;justify
 .modal-confirm{width:100%;background:linear-gradient(135deg,#E8921A,#C97816);border:none;border-radius:16px;padding:16px;font-family:'Black Han Sans',sans-serif;font-size:18px;color:white;cursor:pointer;margin-top:8px;letter-spacing:2px;}
 .modal-confirm:disabled{background:#2a1a08;color:rgba(250,246,240,0.3);cursor:not-allowed;}
 
-/* TABS */
+/* 별점 MODAL */
+#rating-modal{position:absolute;inset:0;background:rgba(0,0,0,0.82);display:flex;align-items:center;justify-content:center;z-index:200;padding:24px;}
+#rating-modal.hidden{display:none;}
+.rating-box{background:#1C1208;border-radius:28px;padding:28px 24px;width:100%;border:1px solid rgba(255,255,255,0.08);text-align:center;}
+.rating-title{font-family:'Black Han Sans',sans-serif;font-size:22px;color:#FAF6F0;margin-bottom:6px;}
+.rating-sub{font-size:13px;color:rgba(250,246,240,0.4);margin-bottom:24px;line-height:1.5;}
+.stars-row{display:flex;justify-content:center;gap:8px;margin-bottom:10px;}
+.star{font-size:44px;cursor:pointer;filter:grayscale(1);opacity:0.2;transition:all 0.12s;line-height:1;display:inline-block;}
+.star.lit{filter:grayscale(0);opacity:1;transform:scale(1.08);}
+.star-label{font-size:15px;font-weight:700;color:#E8921A;height:22px;margin-bottom:24px;}
+.rating-submit{width:100%;background:linear-gradient(135deg,#E8921A,#C97816);border:none;border-radius:16px;padding:15px;font-family:'Black Han Sans',sans-serif;font-size:17px;color:white;cursor:pointer;letter-spacing:2px;}
+.rating-submit:disabled{background:#2a1a08;color:rgba(250,246,240,0.3);cursor:not-allowed;}
+
+/* 업무확정 OVERLAY */
+#ac-overlay{position:absolute;inset:0;background:#0F0A04;z-index:300;display:flex;flex-direction:column;overflow-y:auto;}
+#ac-overlay.hidden{display:none;}
+.ac-header{background:linear-gradient(160deg,#1E0F00 0%,#6B3A12 100%);padding:52px 26px 28px;flex-shrink:0;position:relative;overflow:hidden;}
+.ac-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(232,146,26,0.25),transparent 65%);}
+.ac-top{position:relative;z-index:1;}
+.ac-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(232,146,26,0.15);border:1px solid rgba(232,146,26,0.3);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:700;color:#E8921A;letter-spacing:2px;margin-bottom:14px;}
+.ac-title{font-family:'Black Han Sans',sans-serif;font-size:36px;color:#FAF6F0;line-height:1.15;margin-bottom:8px;}
+.ac-date{font-size:13px;color:rgba(250,246,240,0.4);}
+.ac-body{padding:20px 22px 0;}
+.ac-role-section{margin-bottom:20px;}
+.ac-role-hd{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.ac-role-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.ac-role-name{font-size:18px;font-weight:900;}
+.ac-role-desc{font-size:12px;color:rgba(250,246,240,0.38);margin-top:2px;}
+.ac-staff-list{display:flex;flex-wrap:wrap;gap:10px;}
+.ac-staff-card{background:#1C1208;border-radius:18px;padding:14px 16px;display:flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,0.05);flex:1;min-width:120px;}
+.ac-photo{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#3D1C00,#8B5A2B);display:flex;align-items:center;justify-content:center;font-size:24px;overflow:hidden;flex-shrink:0;border:2px solid rgba(255,255,255,0.07);}
+.ac-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.ac-sname{font-size:16px;font-weight:700;color:#FAF6F0;}
+.ac-srole{font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;margin-top:3px;display:inline-block;}
+.ac-divider{height:1px;background:rgba(255,255,255,0.05);margin:4px 0 20px;}
+.ac-empty{font-size:13px;color:rgba(250,246,240,0.2);font-style:italic;padding:8px 0;}
+.ac-start-btn{margin:20px 22px 36px;background:linear-gradient(135deg,#E8921A,#C97816);border:none;border-radius:18px;padding:18px;font-family:'Black Han Sans',sans-serif;font-size:20px;color:white;cursor:pointer;letter-spacing:3px;box-shadow:0 8px 24px rgba(232,146,26,0.35);width:calc(100% - 44px);}
+
 .tab{display:none;}
 .tab.active{display:block;}
 </style>
@@ -131,173 +167,181 @@ body{background:#0a0603;min-height:100vh;display:flex;align-items:center;justify
 <body>
 <div class="phone">
 
-  <!-- HEADER -->
-  <div class="hdr">
-    <div class="hdr-top">
-      <div class="hdr-logo">누룽지 THE<em>바삭</em></div>
-      <div class="hdr-time" id="clock"></div>
-    </div>
-    <div class="hdr-date" id="today-date"></div>
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-top">
+    <div class="hdr-logo">누룽지 THE<em>바삭</em></div>
+    <div class="hdr-time" id="clock"></div>
   </div>
+  <div class="hdr-date" id="today-date"></div>
+</div>
 
-  <!-- CONTENT -->
-  <div class="content">
+<!-- CONTENT -->
+<div class="content">
 
-    <!-- 대시보드 -->
-    <div class="tab active" id="tab-dashboard">
-      <div class="sec-hd">오늘 현황</div>
-      <div class="dash-grid">
-        <div class="stat-card">
-          <div class="stat-label">업무 배정</div>
-          <div class="stat-val"><span id="assigned-count">0</span><span>/7</span></div>
-          <div class="stat-sub">명 배정 완료</div>
-        </div>
-        <div class="stat-card accent">
-          <div class="stat-label">주문 현황</div>
-          <div class="stat-val"><span id="done-count">0</span><span id="total-count">/0</span></div>
-          <div class="stat-sub">건 완료</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">누룽지 생산</div>
-          <div class="stat-val"><span id="dash-nurungji">0</span><span style="font-size:14px">개</span></div>
-          <div class="stat-sub">오늘 제조량</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">숭늉 생산</div>
-          <div class="stat-val"><span id="dash-sungnyang">0</span><span style="font-size:14px">잔</span></div>
-          <div class="stat-sub">오늘 제조량</div>
-        </div>
+  <!-- 대시보드 -->
+  <div class="tab active" id="tab-dashboard">
+    <div class="sec-hd">오늘 현황</div>
+    <div class="dash-grid">
+      <div class="stat-card">
+        <div class="stat-label">업무 배정</div>
+        <div class="stat-val" id="stat-assigned">0<span>/7</span></div>
+        <div class="stat-sub">명 배정 완료</div>
       </div>
-
-      <div class="sec-hd">업무 현황</div>
-      <div id="dash-roles"></div>
-
-      <div id="dash-pending-section" style="display:none">
-        <div class="sec-hd">진행중 주문</div>
-        <div id="dash-pending-list"></div>
+      <div class="stat-card accent">
+        <div class="stat-label">주문 현황</div>
+        <div class="stat-val"><span id="stat-done">0</span><span id="stat-total">/0</span></div>
+        <div class="stat-sub">건 완료</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">누룽지 생산</div>
+        <div class="stat-val" id="stat-nurungji">0<span>개</span></div>
+        <div class="stat-sub">오늘 제조량</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">숭늉 생산</div>
+        <div class="stat-val" id="stat-sungnyang">0<span>잔</span></div>
+        <div class="stat-sub">오늘 제조량</div>
       </div>
     </div>
-
-    <!-- 업무배정 -->
-    <div class="tab" id="tab-assign">
-      <div class="sec-hd">사진 등록</div>
-      <div class="upload-row" id="upload-row"></div>
-
-      <div class="sec-hd">역할 배정</div>
-      <div id="assign-roles"></div>
-
-      <div id="unassigned-section">
-        <div class="sec-hd">미배정</div>
-        <div class="role-chips" id="unassigned-chips" style="gap:6px;display:flex;flex-wrap:wrap;"></div>
-      </div>
-    </div>
-
-    <!-- 주문현황 -->
-    <div class="tab" id="tab-orders">
-      <button class="add-order-btn" onclick="openOrderModal()">
-        <span style="font-size:20px">+</span> 새 주문 접수
-      </button>
-      <div id="order-list-wrap"></div>
-    </div>
-
-    <!-- 생산기록 -->
-    <div class="tab" id="tab-production">
-      <div class="sec-hd">오늘 생산량</div>
-      <div class="prod-card">
-        <div class="prod-row">
-          <div class="prod-emoji">🍘</div>
-          <div style="flex:1">
-            <div class="prod-name">찹쌀 누룽지</div>
-            <div class="prod-target">목표 20개</div>
-          </div>
-          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
-            <div class="prod-ctrl">
-              <button class="qbtn m" onclick="changeProd('nurungji',-1)">−</button>
-              <span class="prod-count" id="prod-nurungji-val">0</span>
-              <button class="qbtn p" onclick="changeProd('nurungji',1)">+</button>
-            </div>
-            <span class="prod-unit">개</span>
-          </div>
-        </div>
-        <div class="prog-bar"><div class="prog-fill" id="prog-nurungji" style="width:0%"></div></div>
-        <div class="prog-pct" id="pct-nurungji">0% 달성</div>
-      </div>
-      <div class="prod-card">
-        <div class="prod-row">
-          <div class="prod-emoji">☕</div>
-          <div style="flex:1">
-            <div class="prod-name">숭늉</div>
-            <div class="prod-target">목표 15잔</div>
-          </div>
-          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
-            <div class="prod-ctrl">
-              <button class="qbtn m" onclick="changeProd('sungnyang',-1)">−</button>
-              <span class="prod-count" id="prod-sungnyang-val">0</span>
-              <button class="qbtn p" onclick="changeProd('sungnyang',1)">+</button>
-            </div>
-            <span class="prod-unit">잔</span>
-          </div>
-        </div>
-        <div class="prog-bar"><div class="prog-fill" id="prog-sungnyang" style="width:0%"></div></div>
-        <div class="prog-pct" id="pct-sungnyang">0% 달성</div>
-      </div>
-      <div class="total-prod-card">
-        <div>
-          <div style="font-size:13px;color:rgba(250,246,240,0.5)">총 생산</div>
-          <div style="font-size:11px;color:rgba(250,246,240,0.3);margin-top:2px">누룽지 + 숭늉</div>
-        </div>
-        <div class="total-val" id="total-prod">0<span style="font-size:14px;font-weight:400;color:rgba(250,246,240,0.3)">건</span></div>
-      </div>
+    <div id="dash-avg-wrap"></div>
+    <div class="sec-hd">업무 현황</div>
+    <div id="dash-roles"></div>
+    <div id="dash-pending-section" style="display:none">
+      <div class="sec-hd">진행중 주문</div>
+      <div id="dash-pending-list"></div>
     </div>
   </div>
 
-  <!-- BOTTOM NAV -->
-  <div class="nav">
-    <button class="nav-btn active" onclick="switchTab('dashboard',this)">
-      <span class="nav-icon">🏠</span>
-      <span class="nav-label">대시보드</span>
-    </button>
-    <button class="nav-btn" onclick="switchTab('assign',this)">
-      <span class="nav-icon">👥</span>
-      <span class="nav-label">업무배정</span>
-    </button>
-    <button class="nav-btn" onclick="switchTab('orders',this)">
-      <span class="nav-icon">📋</span>
-      <span class="nav-label">주문현황</span>
-    </button>
-    <button class="nav-btn" onclick="switchTab('production',this)">
-      <span class="nav-icon">📊</span>
-      <span class="nav-label">생산기록</span>
+  <!-- 업무배정 -->
+  <div class="tab" id="tab-assign">
+    <div class="sec-hd">사진 등록</div>
+    <div class="upload-row" id="upload-row"></div>
+    <div class="sec-hd">역할 배정</div>
+    <div id="assign-roles"></div>
+    <div id="unassigned-section">
+      <div class="sec-hd">미배정</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;" id="unassigned-chips"></div>
+      <div style="height:12px"></div>
+    </div>
+    <button class="confirm-assign-btn" id="confirm-assign-btn" onclick="confirmAssignment()" disabled>
+      ✅ 오늘의 업무 확정
     </button>
   </div>
 
-  <!-- ORDER MODAL -->
-  <div class="modal-overlay hidden" id="order-modal" onclick="closeOrderModal(event)">
-    <div class="modal">
-      <div class="modal-title">새 주문 접수</div>
-      <div class="modal-row">
-        <span class="modal-item-label">🍘 찹쌀 누룽지</span>
-        <div class="prod-ctrl">
-          <button class="qbtn m" onclick="changeNewOrder('nurungji',-1)">−</button>
-          <span class="prod-count" id="new-nurungji" style="font-size:22px">0</span>
-          <button class="qbtn p" onclick="changeNewOrder('nurungji',1)">+</button>
+  <!-- 주문현황 -->
+  <div class="tab" id="tab-orders">
+    <button class="add-order-btn" onclick="openOrderModal()">
+      <span style="font-size:20px">+</span> 새 주문 접수
+    </button>
+    <div id="order-list-wrap"></div>
+  </div>
+
+  <!-- 생산기록 -->
+  <div class="tab" id="tab-production">
+    <div class="sec-hd">오늘 생산량</div>
+    <div class="prod-card">
+      <div class="prod-row">
+        <div class="prod-emoji">🍘</div>
+        <div style="flex:1"><div class="prod-name">찹쌀 누룽지</div><div class="prod-target">목표 20개</div></div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+          <div class="prod-ctrl">
+            <button class="qbtn m" onclick="changeProd('nurungji',-1)">−</button>
+            <span class="prod-count" id="pv-nurungji">0</span>
+            <button class="qbtn p" onclick="changeProd('nurungji',1)">+</button>
+          </div>
+          <span class="prod-unit">개</span>
         </div>
       </div>
-      <div class="modal-row">
-        <span class="modal-item-label">☕ 숭늉</span>
-        <div class="prod-ctrl">
-          <button class="qbtn m" onclick="changeNewOrder('sungnyang',-1)">−</button>
-          <span class="prod-count" id="new-sungnyang" style="font-size:22px">0</span>
-          <button class="qbtn p" onclick="changeNewOrder('sungnyang',1)">+</button>
+      <div class="prog-bar"><div class="prog-fill" id="pg-nurungji" style="width:0%"></div></div>
+      <div class="prog-pct" id="pp-nurungji">0% 달성</div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-row">
+        <div class="prod-emoji">☕</div>
+        <div style="flex:1"><div class="prod-name">숭늉</div><div class="prod-target">목표 15잔</div></div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+          <div class="prod-ctrl">
+            <button class="qbtn m" onclick="changeProd('sungnyang',-1)">−</button>
+            <span class="prod-count" id="pv-sungnyang">0</span>
+            <button class="qbtn p" onclick="changeProd('sungnyang',1)">+</button>
+          </div>
+          <span class="prod-unit">잔</span>
         </div>
       </div>
-      <button class="modal-confirm" id="confirm-order-btn" onclick="addOrder()" disabled>접수하기</button>
+      <div class="prog-bar"><div class="prog-fill" id="pg-sungnyang" style="width:0%"></div></div>
+      <div class="prog-pct" id="pp-sungnyang">0% 달성</div>
+    </div>
+    <div class="total-prod-card">
+      <div>
+        <div style="font-size:13px;color:rgba(250,246,240,0.5)">총 생산</div>
+        <div style="font-size:11px;color:rgba(250,246,240,0.3);margin-top:2px">누룽지 + 숭늉</div>
+      </div>
+      <div class="total-val" id="total-prod">0<span style="font-size:14px;font-weight:400;color:rgba(250,246,240,0.3)">건</span></div>
     </div>
   </div>
 </div>
 
+<!-- NAV -->
+<div class="nav">
+  <button class="nav-btn active" onclick="switchTab('dashboard',this)"><span class="nav-icon">🏠</span><span class="nav-label">대시보드</span></button>
+  <button class="nav-btn" onclick="switchTab('assign',this)"><span class="nav-icon">👥</span><span class="nav-label">업무배정</span></button>
+  <button class="nav-btn" onclick="switchTab('orders',this)"><span class="nav-icon">📋</span><span class="nav-label">주문현황</span></button>
+  <button class="nav-btn" onclick="switchTab('production',this)"><span class="nav-icon">📊</span><span class="nav-label">생산기록</span></button>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-bg hidden" id="order-modal" onclick="closeOrderModal(event)">
+  <div class="modal">
+    <div class="modal-title">새 주문 접수</div>
+    <div class="modal-row">
+      <span class="modal-item-label">🍘 찹쌀 누룽지</span>
+      <div class="prod-ctrl">
+        <button class="qbtn m" onclick="changeNew('nurungji',-1)">−</button>
+        <span class="prod-count" id="new-nurungji" style="font-size:22px">0</span>
+        <button class="qbtn p" onclick="changeNew('nurungji',1)">+</button>
+      </div>
+    </div>
+    <div class="modal-row">
+      <span class="modal-item-label">☕ 숭늉</span>
+      <div class="prod-ctrl">
+        <button class="qbtn m" onclick="changeNew('sungnyang',-1)">−</button>
+        <span class="prod-count" id="new-sungnyang" style="font-size:22px">0</span>
+        <button class="qbtn p" onclick="changeNew('sungnyang',1)">+</button>
+      </div>
+    </div>
+    <button class="modal-confirm" id="order-confirm-btn" onclick="addOrder()" disabled>접수하기</button>
+  </div>
+</div>
+
+<!-- 별점 MODAL -->
+<div id="rating-modal" class="hidden">
+  <div class="rating-box">
+    <div class="rating-title">⭐ 서비스 평가</div>
+    <div class="rating-sub" id="rating-sub"></div>
+    <div class="stars-row" id="stars-row"></div>
+    <div class="star-label" id="star-label"></div>
+    <button class="rating-submit" id="rating-submit" onclick="submitRating()" disabled>평가 완료</button>
+  </div>
+</div>
+
+<!-- 업무확정 OVERLAY -->
+<div id="ac-overlay" class="hidden">
+  <div class="ac-header">
+    <div class="ac-glow"></div>
+    <div class="ac-top">
+      <div class="ac-badge">✅ 업무 확정 완료</div>
+      <div class="ac-title">오늘의<br>업무 배정</div>
+      <div class="ac-date" id="ac-date"></div>
+    </div>
+  </div>
+  <div class="ac-body" id="ac-body"></div>
+  <button class="ac-start-btn" onclick="document.getElementById('ac-overlay').classList.add('hidden')">🍘 영업 시작!</button>
+</div>
+
+</div>
+
 <script>
-// ── DATA ──
 const STAFF = [
   {id:1,name:"김수민"},{id:2,name:"김준혁"},{id:3,name:"박신비"},
   {id:4,name:"이솔민"},{id:5,name:"이채현"},{id:6,name:"차지호"},{id:7,name:"백하진"}
@@ -305,252 +349,253 @@ const STAFF = [
 const AVATARS = ["🌸","⚡","🌿","🌙","🔥","🌊","🍀"];
 const ROLES = [
   {id:"order",label:"주문 안내",icon:"📋",color:"#3B82F6",desc:"주문 접수 및 안내",slots:2},
-  {id:"make", label:"제조",    icon:"🍘",color:"#E8921A",desc:"누룽지·숭늉 제조",slots:3},
+  {id:"make", label:"제조 및 포장",icon:"🍘",color:"#E8921A",desc:"누룽지·숭늉 제조 및 포장",slots:3},
   {id:"serve",label:"서빙",   icon:"🤝",color:"#10B981",desc:"서빙 및 고객 응대",slots:2},
 ];
-const STATUS = {
+const SM = {
   pending:{label:"대기중",color:"#EAB308",bg:"rgba(234,179,8,0.12)"},
   making: {label:"제조중",color:"#E8921A",bg:"rgba(232,146,26,0.12)"},
   done:   {label:"완료",  color:"#10B981",bg:"rgba(16,185,129,0.12)"},
 };
+const STAR_LABELS = ["","별로예요","그저 그래요","괜찮아요","좋아요","최고예요! 🎉"];
 
-let staffRoles = {};  // {staffId: roleId}
-let photos = {};      // {staffId: dataURL}
-let orders = [];      // [{id,items,status,time}]
-let prod = {nurungji:0, sungnyang:0};
-let newOrder = {nurungji:0, sungnyang:0};
-let orderSeq = 0;
+// STATE
+let staffRoles = {};
+let photos = {};
+let orders = [];
+let prod = {nurungji:0,sungnyang:0};
+let newOrder = {nurungji:0,sungnyang:0};
+let ratingId = null;
+let curRating = 0;
 
-// ── CLOCK ──
-function updateClock() {
-  const now = new Date();
-  document.getElementById('clock').textContent = now.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
-}
-updateClock(); setInterval(updateClock, 10000);
-document.getElementById('today-date').textContent =
-  new Date().toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'}) + ' · 찹쌀 누룽지 생산';
+// CLOCK
+setInterval(()=>{
+  document.getElementById('clock').textContent = new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+}, 10000);
+document.getElementById('clock').textContent = new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+document.getElementById('today-date').textContent = new Date().toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'}) + ' · 찹쌀 누룽지 생산';
 
-// ── TAB ──
-function switchTab(id, btn) {
+// TAB
+function switchTab(id,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   btn.classList.add('active');
-  if(id==='dashboard') renderDashboard();
-  if(id==='assign') renderAssign();
-  if(id==='orders') renderOrders();
+  renderAll();
 }
 
-// ── HELPERS ──
-function makeChip(s, small) {
+// HELPERS
+function staffByRole(rid){ return STAFF.filter(s=>staffRoles[s.id]===rid); }
+function unassigned(){ return STAFF.filter(s=>!staffRoles[s.id]); }
+function orderLabel(o){ return [o.items.nurungji>0?`누룽지 ${o.items.nurungji}개`:null,o.items.sungnyang>0?`숭늉 ${o.items.sungnyang}잔`:null].filter(Boolean).join(' · '); }
+
+function makeChip(s, small){
   const i = STAFF.findIndex(x=>x.id===s.id);
-  const size = small ? 20 : 26; const fs = small ? 10 : 13; const ps = small ? '3px 8px 3px 3px' : '5px 10px 5px 5px';
-  return `<div class="chip" style="padding:${ps}">
-    <div class="chip-photo" style="width:${size}px;height:${size}px;font-size:${fs}px">
-      ${photos[s.id] ? `<img src="${photos[s.id]}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">` : AVATARS[i]}
-    </div>
-    <span class="chip-name" style="font-size:${small?11:13}px">${s.name}</span>
-  </div>`;
+  const sz=small?20:26, fs=small?10:13, pd=small?'3px 8px 3px 3px':'5px 10px 5px 5px';
+  const img = photos[s.id]?`<img src="${photos[s.id]}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`:`<span style="font-size:${fs}px">${AVATARS[i]}</span>`;
+  return `<div class="chip" style="padding:${pd}"><div class="chip-photo" style="width:${sz}px;height:${sz}px">${img}</div><span class="chip-name" style="font-size:${small?11:13}px">${s.name}</span></div>`;
 }
 
-function staffByRole(rid) { return STAFF.filter(s=>staffRoles[s.id]===rid); }
-function unassigned() { return STAFF.filter(s=>!staffRoles[s.id]); }
+function photoTag(s, size){
+  const i=STAFF.findIndex(x=>x.id===s.id);
+  return photos[s.id]?`<img src="${photos[s.id]}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`:`<span style="font-size:${size*0.46}px">${AVATARS[i]}</span>`;
+}
 
-// ── DASHBOARD ──
-function renderDashboard() {
+// RENDER ALL
+function renderAll(){
+  renderDashboard();
+  if(document.getElementById('tab-assign').classList.contains('active')) renderAssign();
+  if(document.getElementById('tab-orders').classList.contains('active')) renderOrders();
+  renderProduction();
+}
+
+// DASHBOARD
+function renderDashboard(){
   const assigned = Object.values(staffRoles).filter(Boolean).length;
+  document.getElementById('stat-assigned').innerHTML=`${assigned}<span>/7</span>`;
   const done = orders.filter(o=>o.status==='done').length;
-  document.getElementById('assigned-count').textContent = assigned;
-  document.getElementById('done-count').textContent = done;
-  document.getElementById('total-count').textContent = '/'+orders.length;
-  document.getElementById('dash-nurungji').textContent = prod.nurungji;
-  document.getElementById('dash-sungnyang').textContent = prod.sungnyang;
+  document.getElementById('stat-done').textContent=done;
+  document.getElementById('stat-total').textContent='/'+orders.length;
+  document.getElementById('stat-nurungji').innerHTML=`${prod.nurungji}<span>개</span>`;
+  document.getElementById('stat-sungnyang').innerHTML=`${prod.sungnyang}<span>잔</span>`;
+
+  // avg rating
+  const rated = orders.filter(o=>o.rating>0);
+  const aw = document.getElementById('dash-avg-wrap');
+  if(rated.length){
+    const avg=(rated.reduce((s,o)=>s+o.rating,0)/rated.length).toFixed(1);
+    aw.innerHTML=`<div class="avg-card"><div><div style="font-size:11px;color:rgba(250,246,240,0.4);letter-spacing:1px;margin-bottom:4px">서비스 평점</div><div style="font-size:12px;color:rgba(250,246,240,0.4)">${rated.length}건 평가 완료</div></div><div style="font-family:'Black Han Sans',sans-serif;font-size:28px;color:#EAB308">⭐ ${avg}</div></div>`;
+  } else { aw.innerHTML=''; }
 
   // roles
-  const rc = document.getElementById('dash-roles');
-  rc.innerHTML = ROLES.map(role=>{
-    const members = staffByRole(role.id);
-    const chips = members.length
-      ? members.map(s=>makeChip(s,true)).join('')
-      : '<span class="empty-chip">미배정</span>';
-    return `<div class="role-dash-card">
-      <div class="role-icon-box" style="background:${role.color}18">${role.icon}</div>
-      <div class="role-info">
-        <div class="role-dash-name" style="color:${role.color}">${role.label}</div>
-        <div class="role-chips">${chips}</div>
-      </div>
-      <div class="role-slot-count">${members.length}/${role.slots}</div>
-    </div>`;
+  document.getElementById('dash-roles').innerHTML=ROLES.map(r=>{
+    const members=staffByRole(r.id);
+    const chips=members.length?members.map(s=>makeChip(s,true)).join(''):'<span class="empty-chip">미배정</span>';
+    return `<div class="role-dash-card"><div class="role-icon-box" style="background:${r.color}18">${r.icon}</div><div class="role-info"><div class="role-dash-name" style="color:${r.color}">${r.label}</div><div class="role-chips">${chips}</div></div><div class="role-slot-count">${members.length}/${r.slots}</div></div>`;
   }).join('');
 
-  // pending orders
-  const pending = orders.filter(o=>o.status!=='done');
-  const ps = document.getElementById('dash-pending-section');
-  const pl = document.getElementById('dash-pending-list');
-  if(pending.length>0){
+  // pending
+  const pending=orders.filter(o=>o.status!=='done');
+  const ps=document.getElementById('dash-pending-section');
+  if(pending.length){
     ps.style.display='block';
-    pl.innerHTML = pending.slice(0,3).map((o,i)=>{
-      const sm = STATUS[o.status];
-      const label = [o.items.nurungji>0?`누룽지 ${o.items.nurungji}`:null,o.items.sungnyang>0?`숭늉 ${o.items.sungnyang}`:null].filter(Boolean).join(' · ');
-      const next = o.status==='pending'?'제조 시작':'서빙 완료';
-      return `<div class="order-card">
-        <div class="order-num">#${orders.indexOf(o)+1}</div>
-        <div class="order-info"><div class="order-items">${label}</div><div class="order-time">${o.time}</div></div>
-        <button class="status-badge" style="color:${sm.color};background:${sm.bg}" onclick="advanceOrder(${o.id});renderDashboard()">${next}</button>
-      </div>`;
+    document.getElementById('dash-pending-list').innerHTML=pending.slice(0,3).map(o=>{
+      const s=SM[o.status], lbl=o.status==='pending'?'제조 시작':'서빙 완료';
+      return `<div class="order-card"><div class="order-num">#${orders.indexOf(o)+1}</div><div class="order-info"><div class="order-items">${orderLabel(o)}</div><div class="order-time">${o.time}</div></div><button class="status-badge" style="color:${s.color};background:${s.bg}" onclick="advanceOrder(${o.id})">${lbl}</button></div>`;
     }).join('');
   } else { ps.style.display='none'; }
 }
 
-// ── ASSIGN ──
-function renderAssign() {
-  // upload row
-  document.getElementById('upload-row').innerHTML = STAFF.map((s,i)=>`
-    <button class="upload-btn-sm" onclick="document.getElementById('file-${s.id}').click()">
-      <div class="staff-sel-photo">
-        ${photos[s.id]?`<img src="${photos[s.id]}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`:`<span style="font-size:12px">${AVATARS[i]}</span>`}
-      </div>
+// ASSIGN
+function renderAssign(){
+  document.getElementById('upload-row').innerHTML=STAFF.map((s,i)=>`
+    <button class="upload-btn-sm" onclick="document.getElementById('f${s.id}').click()">
+      <div class="staff-sel-photo">${photos[s.id]?`<img src="${photos[s.id]}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`:`<span>${AVATARS[i]}</span>`}</div>
       <span class="upload-label">${s.name} ${photos[s.id]?'✓':'📷'}</span>
     </button>
-    <input type="file" id="file-${s.id}" accept="image/*" style="display:none" onchange="handlePhoto(${s.id},this)">
+    <input type="file" id="f${s.id}" accept="image/*" onchange="handlePhoto(${s.id},this)">
   `).join('');
 
-  // roles
-  document.getElementById('assign-roles').innerHTML = ROLES.map(role=>{
-    const members = staffByRole(role.id);
-    const slots = Array.from({length:role.slots},(_,i)=>
-      `<div class="slot-dot" style="background:${i<members.length?role.color:'rgba(255,255,255,0.08)'}"></div>`
-    ).join('');
-    const btns = STAFF.map((s,i)=>{
-      const isOn = staffRoles[s.id]===role.id;
-      const other = staffRoles[s.id] && !isOn;
-      const full = !isOn && members.length>=role.slots;
-      const dis = other || full;
-      return `<button class="staff-sel-btn ${isOn?'on':''}" ${dis?'disabled':''}
-        style="${isOn?`border-color:${role.color};background:${role.color}18`:''}"
-        onclick="toggleRole(${s.id},'${role.id}')">
-        <div class="staff-sel-photo">
-          ${photos[s.id]?`<img src="${photos[s.id]}">`:`<span style="font-size:12px">${AVATARS[i]}</span>`}
-        </div>
-        <span class="staff-sel-name">${s.name}</span>
-      </button>`;
+  document.getElementById('assign-roles').innerHTML=ROLES.map(r=>{
+    const members=staffByRole(r.id);
+    const slots=Array.from({length:r.slots},(_,i)=>`<div class="slot-dot" style="background:${i<members.length?r.color:'rgba(255,255,255,0.08)'}"></div>`).join('');
+    const btns=STAFF.map((s,i)=>{
+      const on=staffRoles[s.id]===r.id, other=staffRoles[s.id]&&!on, full=!on&&members.length>=r.slots;
+      const img=photos[s.id]?`<img src="${photos[s.id]}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`:`<span style="font-size:12px">${AVATARS[i]}</span>`;
+      return `<button class="staff-sel-btn" ${(other||full)?'disabled':''} style="${on?`border-color:${r.color};background:${r.color}18`:''}" onclick="toggleRole(${s.id},'${r.id}')"><div class="staff-sel-photo">${img}</div><span class="staff-sel-name">${s.name}</span></button>`;
     }).join('');
-    return `<div class="role-assign-card">
-      <div class="role-assign-hd">
-        <div class="role-assign-icon" style="background:${role.color}18">${role.icon}</div>
-        <div>
-          <div class="role-assign-title" style="color:${role.color}">${role.label}</div>
-          <div class="role-assign-desc">${role.desc} · 최대 ${role.slots}명</div>
-        </div>
-      </div>
-      <div class="slot-bar">${slots}</div>
-      <div class="staff-grid-sel">${btns}</div>
-    </div>`;
+    return `<div class="role-assign-card"><div class="role-assign-hd"><div class="role-assign-icon" style="background:${r.color}18">${r.icon}</div><div><div class="role-assign-title" style="color:${r.color}">${r.label}</div><div class="role-assign-desc">${r.desc} · 최대 ${r.slots}명</div></div></div><div class="slot-bar">${slots}</div><div class="staff-grid-sel">${btns}</div></div>`;
   }).join('');
 
-  // unassigned
-  const ua = unassigned();
-  const us = document.getElementById('unassigned-section');
-  if(ua.length>0){
-    us.style.display='block';
-    document.getElementById('unassigned-chips').innerHTML = ua.map(s=>makeChip(s,false)).join('');
-  } else { us.style.display='none'; }
+  const ua=unassigned();
+  const us=document.getElementById('unassigned-section');
+  if(ua.length){ us.style.display='block'; document.getElementById('unassigned-chips').innerHTML=ua.map(s=>makeChip(s,false)).join(''); }
+  else { us.style.display='none'; }
+  document.getElementById('confirm-assign-btn').disabled=ua.length>0;
 }
 
-function toggleRole(staffId, roleId) {
-  const cur = staffRoles[staffId];
-  if(cur===roleId){ delete staffRoles[staffId]; }
+function toggleRole(staffId,roleId){
+  if(staffRoles[staffId]===roleId){ delete staffRoles[staffId]; }
   else {
-    const members = staffByRole(roleId);
-    const role = ROLES.find(r=>r.id===roleId);
+    const members=staffByRole(roleId), role=ROLES.find(r=>r.id===roleId);
     if(members.length>=role.slots) return;
     staffRoles[staffId]=roleId;
   }
-  renderAssign();
-  renderDashboard();
+  renderAssign(); renderDashboard();
 }
 
-function handlePhoto(staffId, input) {
-  const f = input.files[0]; if(!f) return;
-  const r = new FileReader();
-  r.onload = ev => { photos[staffId]=ev.target.result; renderAssign(); renderDashboard(); };
+function handlePhoto(id,input){
+  const f=input.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=ev=>{photos[id]=ev.target.result; renderAssign(); renderDashboard();};
   r.readAsDataURL(f);
 }
 
-// ── ORDERS ──
-function renderOrders() {
-  const wrap = document.getElementById('order-list-wrap');
-  if(orders.length===0){
-    wrap.innerHTML='<div class="empty-state"><div class="empty-icon">📋</div>아직 주문이 없어요</div>';
-    return;
-  }
-  const sections = ['pending','making','done'].map(status=>{
-    const list = orders.filter(o=>o.status===status);
-    if(!list.length) return '';
-    const sm = STATUS[status];
-    const items = list.map((o,i)=>{
-      const label = [o.items.nurungji>0?`🍘 누룽지 ${o.items.nurungji}개`:null,o.items.sungnyang>0?`☕ 숭늉 ${o.items.sungnyang}잔`:null].filter(Boolean).join('  ');
-      const btn = status!=='done'
-        ? `<button class="status-badge" style="color:${sm.color};background:${sm.bg};border:none;cursor:pointer" onclick="advanceOrder(${o.id});renderOrders();renderDashboard()">${status==='pending'?'제조 시작':'서빙 완료'}</button>`
-        : `<span style="font-size:18px">✅</span>`;
-      return `<div class="order-card">
-        <div class="order-num" style="color:rgba(250,246,240,0.15)">#${orders.indexOf(o)+1}</div>
-        <div class="order-info"><div class="order-items">${label}</div><div class="order-time">${o.time}</div></div>
-        ${btn}
-      </div>`;
-    }).join('');
-    return `<div class="sec-hd">${sm.label} · ${list.length}건</div>${items}`;
+// 업무 확정
+function confirmAssignment(){
+  // build overlay
+  document.getElementById('ac-date').textContent=new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'long'});
+  document.getElementById('ac-body').innerHTML=ROLES.map((r,ri)=>{
+    const members=staffByRole(r.id);
+    const cards=members.length
+      ? members.map(s=>`<div class="ac-staff-card"><div class="ac-photo" style="border-color:${r.color}40">${photoTag(s,48)}</div><div><div class="ac-sname">${s.name}</div><div class="ac-srole" style="background:${r.color}18;color:${r.color}">${r.label}</div></div></div>`).join('')
+      : '<div class="ac-empty">미배정</div>';
+    return `<div class="ac-role-section"><div class="ac-role-hd"><div class="ac-role-icon" style="background:${r.color}18">${r.icon}</div><div><div class="ac-role-name" style="color:${r.color}">${r.label}</div><div class="ac-role-desc">${r.desc}</div></div></div><div class="ac-staff-list">${cards}</div></div>${ri<ROLES.length-1?'<div class="ac-divider"></div>':''}`;
   }).join('');
-  wrap.innerHTML = sections;
+  document.getElementById('ac-overlay').classList.remove('hidden');
+  document.getElementById('ac-overlay').scrollTop=0;
 }
 
-function openOrderModal() {
+// ORDERS
+function renderOrders(){
+  const wrap=document.getElementById('order-list-wrap');
+  if(!orders.length){ wrap.innerHTML='<div class="empty-state"><div class="empty-icon">📋</div>아직 주문이 없어요</div>'; return; }
+  wrap.innerHTML=['pending','making','done'].map(status=>{
+    const list=orders.filter(o=>o.status===status);
+    if(!list.length) return '';
+    const s=SM[status];
+    return `<div class="sec-hd">${s.label} · ${list.length}건</div>`+list.map(o=>{
+      let btn='';
+      if(status!=='done'){
+        const lbl=status==='pending'?'제조 시작':'서빙 완료';
+        btn=`<button class="status-badge" style="color:${s.color};background:${s.bg}" onclick="advanceOrder(${o.id})">${lbl}</button>`;
+      } else if(o.rating){
+        btn=`<div style="font-size:16px">${'⭐'.repeat(o.rating)}</div>`;
+      } else {
+        btn=`<button class="status-badge" style="color:#EAB308;background:rgba(234,179,8,0.12)" onclick="openRating(${o.id})">평가하기</button>`;
+      }
+      return `<div class="order-card"><div class="order-num" style="color:rgba(250,246,240,0.15)">#${orders.indexOf(o)+1}</div><div class="order-info"><div class="order-items">${orderLabel(o)}</div><div class="order-time">${o.time}</div></div>${btn}</div>`;
+    }).join('');
+  }).join('');
+}
+
+function advanceOrder(id){
+  const o=orders.find(x=>x.id===id); if(!o||o.status==='done') return;
+  if(o.status==='making'){ o.status='done'; renderAll(); openRating(id); }
+  else { o.status='making'; renderAll(); }
+}
+
+// ORDER MODAL
+function openOrderModal(){
   newOrder={nurungji:0,sungnyang:0};
   document.getElementById('new-nurungji').textContent=0;
   document.getElementById('new-sungnyang').textContent=0;
-  document.getElementById('confirm-order-btn').disabled=true;
+  document.getElementById('order-confirm-btn').disabled=true;
   document.getElementById('order-modal').classList.remove('hidden');
 }
-function closeOrderModal(e) {
-  if(e.target===document.getElementById('order-modal'))
-    document.getElementById('order-modal').classList.add('hidden');
-}
-function changeNewOrder(item, delta) {
+function closeOrderModal(e){ if(e.target===document.getElementById('order-modal')) document.getElementById('order-modal').classList.add('hidden'); }
+function changeNew(item,delta){
   newOrder[item]=Math.max(0,newOrder[item]+delta);
   document.getElementById('new-'+item).textContent=newOrder[item];
-  document.getElementById('confirm-order-btn').disabled=(newOrder.nurungji===0&&newOrder.sungnyang===0);
+  document.getElementById('order-confirm-btn').disabled=newOrder.nurungji===0&&newOrder.sungnyang===0;
 }
-function addOrder() {
-  orderSeq++;
-  orders.push({
-    id:Date.now(), seq:orderSeq,
-    items:{...newOrder}, status:'pending',
-    time: new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})
-  });
+function addOrder(){
+  orders.push({id:Date.now(),items:{...newOrder},status:'pending',rating:0,time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})});
   document.getElementById('order-modal').classList.add('hidden');
-  renderOrders(); renderDashboard();
-}
-function advanceOrder(id) {
-  const o = orders.find(x=>x.id===id); if(!o||o.status==='done') return;
-  o.status = o.status==='pending'?'making':'done';
+  renderAll();
 }
 
-// ── PRODUCTION ──
-function changeProd(item, delta) {
+// RATING
+function openRating(orderId){
+  ratingId=orderId; curRating=0;
+  const o=orders.find(x=>x.id===orderId);
+  document.getElementById('rating-sub').textContent=orderLabel(o)+' 서비스는 어떠셨나요?';
+  document.getElementById('rating-submit').disabled=true;
+  document.getElementById('star-label').textContent='';
+  renderStars(0);
+  document.getElementById('rating-modal').classList.remove('hidden');
+}
+function renderStars(lit){
+  document.getElementById('stars-row').innerHTML=[1,2,3,4,5].map(n=>`<span class="star ${lit>=n?'lit':''}" onmouseenter="hoverStar(${n})" onmouseleave="hoverStar(0)" onclick="selectStar(${n})">⭐</span>`).join('');
+}
+function hoverStar(n){ renderStars(n||curRating); document.getElementById('star-label').textContent=STAR_LABELS[n||curRating]||''; }
+function selectStar(n){ curRating=n; renderStars(n); document.getElementById('star-label').textContent=STAR_LABELS[n]; document.getElementById('rating-submit').disabled=false; }
+function submitRating(){
+  const o=orders.find(x=>x.id===ratingId); if(o) o.rating=curRating;
+  document.getElementById('rating-modal').classList.add('hidden');
+  renderAll();
+}
+
+// PRODUCTION
+function changeProd(item,delta){
   prod[item]=Math.max(0,prod[item]+delta);
-  const targets = {nurungji:20,sungnyang:15};
-  const units = {nurungji:'개',sungnyang:'잔'};
-  document.getElementById('prod-'+item+'-val').textContent=prod[item];
-  const pct = Math.min(100,Math.round((prod[item]/targets[item])*100));
-  document.getElementById('prog-'+item).style.width=pct+'%';
-  document.getElementById('pct-'+item).textContent=pct+'% 달성';
-  document.getElementById('total-prod').innerHTML=(prod.nurungji+prod.sungnyang)+'<span style="font-size:14px;font-weight:400;color:rgba(250,246,240,0.3)">건</span>';
-  document.getElementById('dash-nurungji').textContent=prod.nurungji;
-  document.getElementById('dash-sungnyang').textContent=prod.sungnyang;
+  renderProduction();
+}
+function renderProduction(){
+  const targets={nurungji:20,sungnyang:15};
+  ['nurungji','sungnyang'].forEach(item=>{
+    document.getElementById('pv-'+item).textContent=prod[item];
+    const pct=Math.min(100,Math.round((prod[item]/targets[item])*100));
+    document.getElementById('pg-'+item).style.width=pct+'%';
+    document.getElementById('pp-'+item).textContent=pct+'% 달성';
+  });
+  document.getElementById('total-prod').innerHTML=`${prod.nurungji+prod.sungnyang}<span style="font-size:14px;font-weight:400;color:rgba(250,246,240,0.3)">건</span>`;
+  document.getElementById('stat-nurungji').innerHTML=`${prod.nurungji}<span>개</span>`;
+  document.getElementById('stat-sungnyang').innerHTML=`${prod.sungnyang}<span>잔</span>`;
 }
 
-// ── INIT ──
-renderDashboard();
+// INIT
+renderAll();
 </script>
 </body>
 </html>
