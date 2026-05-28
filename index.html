@@ -11,6 +11,25 @@ body{background:#0a0603;min-height:100vh;display:flex;align-items:center;justify
 .phone{width:390px;height:844px;background:#0F0A04;border-radius:48px;overflow:hidden;position:relative;box-shadow:0 48px 120px rgba(0,0,0,0.9),0 0 0 1.5px #2a1a08;display:flex;flex-direction:column;}
 @media(max-width:420px){.phone{width:100vw;height:100dvh;border-radius:0;box-shadow:none;}}
 
+/* SPLASH */
+#splash{position:absolute;inset:0;background:#0F0A04;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow:hidden;}
+#splash.hidden{display:none;}
+.sp-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,#5a2e06 0%,#0F0A04 70%);}
+.sp-ring{position:absolute;border-radius:50%;border:1px solid rgba(232,146,26,0.12);animation:spRing 3s ease-out infinite;}
+.sp-ring:nth-child(2){width:220px;height:220px;animation-delay:0s;}
+.sp-ring:nth-child(3){width:360px;height:360px;animation-delay:0.7s;}
+.sp-ring:nth-child(4){width:500px;height:500px;animation-delay:1.4s;}
+@keyframes spRing{0%{opacity:0.5;transform:scale(0.85);}100%{opacity:0;transform:scale(1.25);}}
+.sp-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.34,1.56,0.64,1);}
+.sp-content.in{opacity:1;transform:translateY(0);}
+.sp-emoji{font-size:60px;line-height:1;}
+.sp-logo{font-family:'Black Han Sans',sans-serif;font-size:52px;color:#FAF6F0;line-height:1;letter-spacing:-2px;}
+.sp-logo em{color:#E8921A;font-style:normal;}
+.sp-sub{font-size:12px;letter-spacing:5px;color:rgba(250,246,240,0.35);margin-top:2px;}
+.sp-loader{width:56px;height:2px;background:rgba(255,255,255,0.08);border-radius:2px;margin-top:40px;overflow:hidden;position:relative;z-index:1;}
+.sp-fill{height:100%;background:#E8921A;width:0;border-radius:2px;transition:width 2.2s 0.3s ease;}
+.sp-fill.go{width:100%;}
+
 /* HEADER */
 .hdr{background:#1A0E03;padding:48px 20px 14px;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,0.05);}
 .hdr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px;}
@@ -167,6 +186,18 @@ input[type=file]{display:none;}
 <body>
 <div class="phone">
 
+<!-- SPLASH -->
+<div id="splash">
+  <div class="sp-bg"></div>
+  <div class="sp-ring"></div><div class="sp-ring"></div><div class="sp-ring"></div>
+  <div class="sp-content" id="sp-content">
+    <div class="sp-emoji">🍘</div>
+    <div class="sp-logo">누룽지 THE<em>바삭</em></div>
+    <div class="sp-sub">관리 시스템</div>
+  </div>
+  <div class="sp-loader"><div class="sp-fill" id="sp-fill"></div></div>
+</div>
+
 <!-- HEADER -->
 <div class="hdr">
   <div class="hdr-top">
@@ -279,6 +310,11 @@ input[type=file]{display:none;}
       </div>
       <div class="total-val" id="total-prod">0<span style="font-size:14px;font-weight:400;color:rgba(250,246,240,0.3)">건</span></div>
     </div>
+
+    <div class="sec-hd" style="margin-top:18px">서비스 평가 현황</div>
+    <div id="rating-summary">
+      <div class="empty-state"><div class="empty-icon">⭐</div>아직 평가가 없어요</div>
+    </div>
   </div>
 </div>
 
@@ -367,6 +403,18 @@ let prod = {nurungji:0,sungnyang:0};
 let newOrder = {nurungji:0,sungnyang:0};
 let ratingId = null;
 let curRating = 0;
+
+// SPLASH
+setTimeout(()=>{
+  document.getElementById('sp-content').classList.add('in');
+  document.getElementById('sp-fill').classList.add('go');
+},100);
+setTimeout(()=>{
+  const s=document.getElementById('splash');
+  s.style.transition='opacity 0.5s ease';
+  s.style.opacity='0';
+  setTimeout(()=>s.classList.add('hidden'),500);
+},2800);
 
 // CLOCK
 setInterval(()=>{
@@ -471,7 +519,7 @@ function renderAssign(){
   const us=document.getElementById('unassigned-section');
   if(ua.length){ us.style.display='block'; document.getElementById('unassigned-chips').innerHTML=ua.map(s=>makeChip(s,false)).join(''); }
   else { us.style.display='none'; }
-  document.getElementById('confirm-assign-btn').disabled=ua.length>0;
+  document.getElementById('confirm-assign-btn').disabled = Object.values(staffRoles).filter(Boolean).length === 0;
 }
 
 function toggleRole(staffId,roleId){
@@ -531,8 +579,12 @@ function renderOrders(){
 
 function advanceOrder(id){
   const o=orders.find(x=>x.id===id); if(!o||o.status==='done') return;
-  if(o.status==='making'){ o.status='done'; renderAll(); openRating(id); }
-  else { o.status='making'; renderAll(); }
+  if(o.status==='making'){
+    o.status='done';
+    prod.nurungji += (o.items.nurungji||0);
+    prod.sungnyang += (o.items.sungnyang||0);
+    renderAll(); openRating(id);
+  } else { o.status='making'; renderAll(); }
 }
 
 // ORDER MODAL
@@ -592,6 +644,35 @@ function renderProduction(){
   document.getElementById('total-prod').innerHTML=`${prod.nurungji+prod.sungnyang}<span style="font-size:14px;font-weight:400;color:rgba(250,246,240,0.3)">건</span>`;
   document.getElementById('stat-nurungji').innerHTML=`${prod.nurungji}<span>개</span>`;
   document.getElementById('stat-sungnyang').innerHTML=`${prod.sungnyang}<span>잔</span>`;
+
+  // 별점 현황
+  const rated = orders.filter(o=>o.rating>0);
+  const rs = document.getElementById('rating-summary');
+  if(!rated.length){ rs.innerHTML='<div class="empty-state"><div class="empty-icon">⭐</div>아직 평가가 없어요</div>'; return; }
+  const avg=(rated.reduce((s,o)=>s+o.rating,0)/rated.length).toFixed(1);
+  const starCounts=[1,2,3,4,5].map(n=>rated.filter(o=>o.rating===n).length);
+  rs.innerHTML=`
+    <div class="avg-card" style="margin-bottom:10px">
+      <div>
+        <div style="font-size:11px;color:rgba(250,246,240,0.4);letter-spacing:1px;margin-bottom:4px">평균 별점</div>
+        <div style="font-size:12px;color:rgba(250,246,240,0.4)">${rated.length}건 평가 완료</div>
+      </div>
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:32px;color:#EAB308">⭐ ${avg}</div>
+    </div>
+    <div style="background:#1C1208;border-radius:16px;padding:16px;border:1px solid rgba(255,255,255,0.04);">
+      ${[5,4,3,2,1].map(n=>{
+        const cnt=starCounts[n-1];
+        const pct=rated.length?Math.round((cnt/rated.length)*100):0;
+        return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:${n>1?8:0}px">
+          <span style="font-size:12px;color:rgba(250,246,240,0.4);width:14px;text-align:right">${n}</span>
+          <span style="font-size:11px">⭐</span>
+          <div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden">
+            <div style="width:${pct}%;height:100%;background:#EAB308;border-radius:3px;transition:width 0.4s"></div>
+          </div>
+          <span style="font-size:11px;color:rgba(250,246,240,0.3);width:20px">${cnt}건</span>
+        </div>`;
+      }).join('')}
+    </div>`;
 }
 
 // INIT
