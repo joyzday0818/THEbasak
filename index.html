@@ -618,10 +618,16 @@ function openRating(orderId){
   document.getElementById('rating-modal').classList.remove('hidden');
 }
 function renderStars(lit){
-  document.getElementById('stars-row').innerHTML=[1,2,3,4,5].map(n=>`<span class="star ${lit>=n?'lit':''}" onmouseenter="hoverStar(${n})" onmouseleave="hoverStar(0)" onclick="selectStar(${n})">⭐</span>`).join('');
+  document.getElementById('stars-row').innerHTML=[1,2,3,4,5].map(n=>
+    `<span class="star ${lit>=n?'lit':''}" onclick="selectStar(${n})">⭐</span>`
+  ).join('');
 }
-function hoverStar(n){ renderStars(n||curRating); document.getElementById('star-label').textContent=STAR_LABELS[n||curRating]||''; }
-function selectStar(n){ curRating=n; renderStars(n); document.getElementById('star-label').textContent=STAR_LABELS[n]; document.getElementById('rating-submit').disabled=false; }
+function selectStar(n){
+  curRating=n;
+  renderStars(n);
+  document.getElementById('star-label').textContent=STAR_LABELS[n];
+  document.getElementById('rating-submit').disabled=false;
+}
 function submitRating(){
   const o=orders.find(x=>x.id===ratingId); if(o) o.rating=curRating;
   document.getElementById('rating-modal').classList.add('hidden');
