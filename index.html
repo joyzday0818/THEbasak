@@ -7,19 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Black+Han+Sans&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-body{background:#E8D9B0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Noto Sans KR',sans-serif;transition:background 0.3s;}
-body.zoomed{background:#2C1A00;}
-
-#zoom-btn{
-  position:fixed;bottom:24px;right:24px;z-index:9999;
-  background:#C8960C;color:#fff;border:none;border-radius:24px;
-  padding:10px 18px;font-family:'Noto Sans KR',sans-serif;
-  font-size:13px;font-weight:700;cursor:pointer;
-  box-shadow:0 4px 16px rgba(100,70,0,0.3);
-  display:flex;align-items:center;gap:6px;
-  transition:background 0.2s;
-}
-#zoom-btn:hover{background:#A87A00;}
+body{background:#E8D9B0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Noto Sans KR',sans-serif;}
 .phone{width:390px;height:844px;background:#FEFCF4;border-radius:48px;overflow:hidden;position:relative;box-shadow:0 32px 80px rgba(100,70,0,0.2),0 0 0 2px #D4B86A;display:flex;flex-direction:column;}
 @media(max-width:420px){.phone{width:100vw;height:100dvh;border-radius:0;box-shadow:none;}}
 
@@ -316,10 +304,10 @@ input[type=file]{display:none;}
     </div>
     <div class="total-prod-card">
       <div>
-        <div style="font-size:13px;color:rgba(250,246,240,0.5)">총 생산</div>
-        <div style="font-size:11px;color:rgba(250,246,240,0.3);margin-top:2px">누룽지 + 숭늉</div>
+        <div style="font-size:13px;color:#A08848">총 생산</div>
+        <div style="font-size:11px;color:#A08848;margin-top:2px">누룽지 + 숭늉</div>
       </div>
-      <div class="total-val" id="total-prod">0<span style="font-size:14px;font-weight:400;color:rgba(250,246,240,0.3)">건</span></div>
+      <div class="total-val" id="total-prod">0<span style="font-size:14px;font-weight:400;color:#A08848">건</span></div>
     </div>
 
     <div class="sec-hd" style="margin-top:18px">서비스 평가 현황</div>
@@ -400,7 +388,7 @@ const ROLES = [
   {id:"serve",label:"서빙",   icon:"🤝",color:"#10B981",desc:"서빙 및 고객 응대",slots:2},
 ];
 const SM = {
-  pending:{label:"대기중",color:"#EAB308",bg:"rgba(234,179,8,0.12)"},
+  pending:{label:"대기중",color:"#C8960C",bg:"rgba(234,179,8,0.12)"},
   making: {label:"제조중",color:"#E8921A",bg:"rgba(232,146,26,0.12)"},
   done:   {label:"완료",  color:"#10B981",bg:"rgba(16,185,129,0.12)"},
 };
@@ -483,7 +471,7 @@ function renderDashboard(){
   const aw = document.getElementById('dash-avg-wrap');
   if(rated.length){
     const avg=(rated.reduce((s,o)=>s+o.rating,0)/rated.length).toFixed(1);
-    aw.innerHTML=`<div class="avg-card"><div><div style="font-size:11px;color:rgba(250,246,240,0.4);letter-spacing:1px;margin-bottom:4px">서비스 평점</div><div style="font-size:12px;color:rgba(250,246,240,0.4)">${rated.length}건 평가 완료</div></div><div style="font-family:'Black Han Sans',sans-serif;font-size:28px;color:#EAB308">⭐ ${avg}</div></div>`;
+    aw.innerHTML=`<div class="avg-card"><div><div style="font-size:11px;color:#A08848;letter-spacing:1px;margin-bottom:4px">서비스 평점</div><div style="font-size:12px;color:#A08848">${rated.length}건 평가 완료</div></div><div style="font-family:'Black Han Sans',sans-serif;font-size:28px;color:#C8960C">⭐ ${avg}</div></div>`;
   } else { aw.innerHTML=''; }
 
   // roles
@@ -581,9 +569,9 @@ function renderOrders(){
       } else if(o.rating){
         btn=`<div style="font-size:16px">${'⭐'.repeat(o.rating)}</div>`;
       } else {
-        btn=`<button class="status-badge" style="color:#EAB308;background:rgba(234,179,8,0.12)" onclick="openRating(${o.id})">평가하기</button>`;
+        btn=`<button class="status-badge" style="color:#C8960C;background:rgba(234,179,8,0.12)" onclick="openRating(${o.id})">평가하기</button>`;
       }
-      return `<div class="order-card"><div class="order-num" style="color:rgba(250,246,240,0.15)">#${orders.indexOf(o)+1}</div><div class="order-info"><div class="order-items">${orderLabel(o)}</div><div class="order-time">${o.time}</div></div>${btn}</div>`;
+      return `<div class="order-card"><div class="order-num" style="color:#A08848">#${orders.indexOf(o)+1}</div><div class="order-info"><div class="order-items">${orderLabel(o)}</div><div class="order-time">${o.time}</div></div>${btn}</div>`;
     }).join('');
   }).join('');
 }
@@ -658,7 +646,7 @@ function renderProduction(){
     document.getElementById('pg-'+item).style.width=pct+'%';
     document.getElementById('pp-'+item).textContent=pct+'% 달성';
   });
-  document.getElementById('total-prod').innerHTML=`${prod.nurungji+prod.sungnyang}<span style="font-size:14px;font-weight:400;color:rgba(250,246,240,0.3)">건</span>`;
+  document.getElementById('total-prod').innerHTML=`${prod.nurungji+prod.sungnyang}<span style="font-size:14px;font-weight:400;color:#A08848">건</span>`;
   document.getElementById('stat-nurungji').innerHTML=`${prod.nurungji}<span>개</span>`;
   document.getElementById('stat-sungnyang').innerHTML=`${prod.sungnyang}<span>잔</span>`;
 
@@ -671,22 +659,22 @@ function renderProduction(){
   rs.innerHTML=`
     <div class="avg-card" style="margin-bottom:10px">
       <div>
-        <div style="font-size:11px;color:rgba(250,246,240,0.4);letter-spacing:1px;margin-bottom:4px">평균 별점</div>
-        <div style="font-size:12px;color:rgba(250,246,240,0.4)">${rated.length}건 평가 완료</div>
+        <div style="font-size:11px;color:#A08848;letter-spacing:1px;margin-bottom:4px">평균 별점</div>
+        <div style="font-size:12px;color:#A08848">${rated.length}건 평가 완료</div>
       </div>
-      <div style="font-family:'Black Han Sans',sans-serif;font-size:32px;color:#EAB308">⭐ ${avg}</div>
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:32px;color:#C8960C">⭐ ${avg}</div>
     </div>
-    <div style="background:#1C1208;border-radius:16px;padding:16px;border:1px solid rgba(255,255,255,0.04);">
+    <div style="background:#fff;border-radius:16px;padding:16px;border:1.5px solid #EDE0C0;">
       ${[5,4,3,2,1].map(n=>{
         const cnt=starCounts[n-1];
         const pct=rated.length?Math.round((cnt/rated.length)*100):0;
         return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:${n>1?8:0}px">
-          <span style="font-size:12px;color:rgba(250,246,240,0.4);width:14px;text-align:right">${n}</span>
+          <span style="font-size:12px;color:#A08848;width:14px;text-align:right">${n}</span>
           <span style="font-size:11px">⭐</span>
-          <div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden">
-            <div style="width:${pct}%;height:100%;background:#EAB308;border-radius:3px;transition:width 0.4s"></div>
+          <div style="flex:1;height:6px;background:#EDE0C0;border-radius:3px;overflow:hidden">
+            <div style="width:${pct}%;height:100%;background:#C8960C;border-radius:3px;transition:width 0.4s"></div>
           </div>
-          <span style="font-size:11px;color:rgba(250,246,240,0.3);width:20px">${cnt}건</span>
+          <span style="font-size:11px;color:#A08848;width:20px">${cnt}건</span>
         </div>`;
       }).join('')}
     </div>`;
@@ -694,30 +682,7 @@ function renderProduction(){
 
 // INIT
 renderAll();
-
-// 전자칠판 모드
-let zoomed = false;
-function toggleZoom(){
-  zoomed = !zoomed;
-  const phone = document.querySelector('.phone');
-  const btn = document.getElementById('zoom-btn');
-  if(zoomed){
-    const scale = Math.min(
-      (window.innerHeight * 0.96) / 844,
-      (window.innerWidth * 0.72) / 390
-    );
-    phone.style.transform = `scale(${scale})`;
-    phone.style.transformOrigin = 'center center';
-    document.body.classList.add('zoomed');
-    btn.innerHTML = '✕ 원래 크기';
-  } else {
-    phone.style.transform = '';
-    document.body.classList.remove('zoomed');
-    btn.innerHTML = '📺 크게 보기';
-  }
-}
 </script>
-<button id="zoom-btn" onclick="toggleZoom()">📺 크게 보기</button>
 
 </body>
 </html>
